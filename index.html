@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Transition</title>
+    <!-- Link external stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Include GSAP and ScrollTrigger from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Hero section shown at top -->
+    <section class="hero">
+      <h1>Hero Section</h1>
+    </section>
+
+    <!-- Video wrapper fixed to viewport; video scrubs with scroll -->
+    <div class="video-wrapper">
+      <video id="scrollVideo" src="transition_1_1.webm" playsinline muted></video>
+    </div>
+
+    <!-- Projects section shown after video scrub completes -->
+    <section class="projects">
+      <h1>Projects Section</h1>
+    </section>
+
+    <!-- External script file -->
+    <script src="script.js"></script>
+  </body>
+</html>
