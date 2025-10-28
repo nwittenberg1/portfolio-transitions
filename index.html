@@ -1,30 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio Transitions</title>
-  <style>
-    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; background:#111; color:#fff; display:flex; align-items:center; justify-content:center; min-height:100vh; }
-    .container { max-width:960px; width:100%; padding:1rem; text-align:center; }
-    h1 { margin:0 0 1rem; font-size:1.4rem; }
-    .video { width:100%; height:auto; border-radius:8px; overflow:hidden; background:#000; }
-    video { width:100%; height:auto; display:block; }
-    .note { margin-top:1rem; font-size:0.9rem; color:#ddd; }
-    a { color:#6cf; text-decoration:none; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scroll Controlled Transition</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    pointer-events: none;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>Portfolio Transitions</h1>
-    <div class="video">
-      <video autoplay muted loop controls playsinline>
-        <source src="/transition_1_1.webm" type="video/webm">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <p class="note">If you don't see the video, check that <code>transition_1_1.webm</code> is in the repository root and GitHub Pages is set to publish from the <strong>main</strong> branch (root).</p>
-    <p class="note"><a href="https://github.com/nwittenberg1/portfolio-transitions">View repo on GitHub</a></p>
-  </div>
+  <video id="scrollVideo"
+         src="https://nwittenberg1.github.io/portfolio-transitions/transition_1_1.webm"
+         muted
+         playsinline>
+  </video>
+
+  <script>
+    const video = document.getElementById('scrollVideo');
+    video.pause();
+
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'scrollUpdate') {
+        const { progress } = event.data;
+        const duration = video.duration || 1;
+        video.currentTime = progress * duration;
+      }
+    });
+  </script>
 </body>
 </html>
